@@ -1,0 +1,477 @@
+\documentclass[landscape]{scrartcl}
+\usepackage[margin=0cm]{geometry}
+
+\usepackage{luacode}
+\usepackage{tikz}
+\usepackage{hyperref}
+\hypersetup{linkcolor=black,colorlinks=true,urlcolor=black}
+
+\pagestyle{empty}
+
+\begin{luacode}
+H = {["name"] = "hydrogen",
+	["short"] = "H",
+	["MOT"] = "https://doi.org/10.1103/PhysRevLett.70.2257",
+	["BEC"] = "https://doi.org/10.1103/PhysRevLett.81.3811",
+	["MOTanti"] = "https://doi.org/10.1038/s41586-021-03289-6",
+	["number"] = 1,}
+He = {["name"] = "helium",
+	["short"] = "He",
+	["BEC"] = "https://doi.org/10.1126/science.1060622",
+	["number"] = 2,}
+Li = {["name"] = "Lithium",
+	["short"] = "Li",
+	["BEC"] = "https://doi.org/10.1103/PhysRevLett.75.1687",
+	["number"] = 3,}
+Be = {["name"] = "Berillium",
+	["short"] = "Be",
+	["number"] = 4,}
+B = {["name"] = "Boron",
+	["short"] = "B",
+	["number"] = 5,}
+C = {["name"] = "Carbon",
+	["short"] = "C",
+	["number"] = 6,}
+N = {["name"] = "Nitrogen",
+	["short"] = "N",
+	["number"] = 7,}
+O = {["name"] = "Oxygen",
+	["short"] = "O",
+	["number"] = 8,}
+F = {["name"] = "Fluor",
+	["short"] = "F",
+	["number"] = 9,}
+Ne = {["name"] = "neon",
+	["short"] = "Ne",
+	["number"] = 10,}
+Na = {["name"] = "Sodium",
+	["short"] = "Na",
+	["MOT"] = "https://doi.org/10.1103/PhysRevLett.59.2631",
+	["BEC"] = "https://doi.org/10.1103/PhysRevLett.75.3969",
+	["number"] = 11,}
+Mg = {["name"] = "Magnesium",
+	["short"] = "Mg",
+	["MOT"] = "https://doi.org/10.1007/BF01081160",
+	["number"] = 12,}
+Al = {["name"] = "Aluminium",
+	["short"] = "Al",
+	["number"] = 13,}
+Si = {["name"] = "Silicone",
+	["short"] = "Si",
+	["number"] = 14,}	
+P = {["name"] = "Phosphorus",
+	["short"] = "P",
+	["number"] = 15,}	
+S = {["name"] = "Sulphur",
+	["short"] = "S",
+	["number"] = 16,}	
+Cl = {["name"] = "Chlorine",
+	["short"] = "Cl",
+	["number"] = 17,}	
+Ar = {["name"] = "Argon",
+	["short"] = "Ar",
+	["number"] = 18,}	
+K = {["name"] = "Potassium",
+	["short"] = "K",
+	["MOT"] = "https://doi.org/10.1364/JOSAB.12.001393",
+	["BEC"] = "https://doi.org/10.1126/science.1066687",
+	["number"] = 19,}
+Ca = {["name"] = "calcium",
+	["short"] = "Ca",
+	["BEC"] = "https://doi.org/10.1103/PhysRevLett.103.130401",
+	["number"] = 20,}
+Sc = {["name"] = "",
+	["short"] = "Sc",
+	["number"] = 21,}
+Ti = {["name"] = "titanium",
+	["short"] = "Ti",
+	["number"] = 22,}
+V = {["name"] = "",
+	["short"] = "V",
+	["number"] = 23,}
+Cr = {["name"] = "chromium",
+	["short"] = "Cr",
+	["MOT"] = "https://doi.org/10.1103/PhysRevA.61.053407",
+	["BEC"] = "https://doi.org/10.1103/PhysRevLett.94.160401",
+	["number"] = 24,}
+Mn = {["name"] = "",
+	["short"] = "Mn",
+	["number"] = 25,}		
+Fe = {["name"] = "",
+	["short"] = "Fe",
+	["number"] = 26,}
+Co = {["name"] = "",
+	["short"] = "Co",
+	["number"] = 27,}
+Ni = {["name"] = "",
+	["short"] = "Ni",
+	["number"] = 28,}
+Cu = {["name"] = "",
+	["short"] = "Cu",
+	["number"] = 29,}
+Zn = {["name"] = "",
+	["short"] = "Zn",
+	["number"] = 30,}
+Ga = {["name"] = "",
+	["short"] = "Ga",
+	["number"] = 31,}
+Ge = {["name"] = "",
+	["short"] = "Ge",
+	["number"] = 32,}
+As = {["name"] = "",
+	["short"] = "As",
+	["number"] = 33,}
+Se = {["name"] = "",
+	["short"] = "Se",
+	["number"] = 34,}
+Br = {["name"] = "",
+	["short"] = "Br",
+	["number"] = 35,}	
+Kr = {["name"] = "",
+	["short"] = "Kr",
+	["number"] = 36,}
+Rb = {["name"]="Rubidium",
+	["short"] = "Rb",
+	["MOT"] = "https://doi.org/10.1126/science.269.5221.198", --% is that right? did not find an earlier MOT
+	["BEC"] = "https://doi.org/10.1126/science.269.5221.198",
+	["BECisotope"] = "https://doi.org/10.1103/PhysRevLett.85.1795",
+	["mixture"] = "",
+	["number"] = 37,}
+Sr = {["name"] = "strontium",
+	["short"] = "Sr",
+	["MOT"] = "https://doi.org/10.1103/PhysRevLett.82.1116",
+	["BEC"] = "https://doi.org/10.1103/PhysRevLett.103.200401",
+	["number"] = 38,}
+Y = {["name"] = "yttrium",
+	["short"] = "Y",
+	["number"] = 39,}
+Zr = {["name"] = "",
+	["short"] = "Zr",
+	["number"] = 40,}
+Nb = {["name"] = "",
+	["short"] = "Nb",
+	["number"] = 41,}
+Mo = {["name"] = "",
+	["short"] = "Mo",
+	["number"] = 42,}
+Tc = {["name"] = "",
+	["short"] = "Tc",
+	["number"] = 43,}
+Ru = {["name"] = "",
+	["short"] = "Ru",
+	["number"] = 44,}
+Rh = {["name"] = "",
+	["short"] = "Rh",
+	["number"] = 45,}
+Pd = {["name"] = "",
+	["short"] = "Pd",
+	["number"] = 46,}
+Ag = {["name"] = "",
+	["short"] = "Ag",
+	["MOT"] = "https://doi.org/10.1103/PhysRevA.62.063404",
+	["number"] = 47,}
+Cd = {["name"] = "cadmium",
+	["short"] = "Cd",
+	["MOT"] = "https://doi.org/10.1103/PhysRevA.76.043411",
+	["number"] = 48,}	
+In = {["name"] = "Indium",
+	["short"] = "In",
+	["MOT"] = "https://doi.org/10.1103/PhysRevA.105.L061101",
+	["number"] = 49,}
+Sn = {["name"] = "Tin",
+	["short"] = "Sn",
+	["number"] = 50,}	
+Sb = {["name"] = "Antimony",
+	["short"] = "Sb",
+	["number"] = 51,}	
+Te = {["name"] = "Tellurium",
+	["short"] = "Te",
+	["number"] = 52,}	
+I = {["name"] = "Iodine",
+	["short"] = "I",
+	["number"] = 53,}
+Xe = {["name"] = "Xenon",
+	["short"] = "Xe",
+	["number"] = 54,}	
+Cs = {["name"] = "Cesium",
+	["short"] = "Cs",
+	["MOT"] = "https://doi.org/10.1103/PhysRevLett.65.1571",
+	["BEC"] = "https://doi.org/10.1126/science.1079699",
+	["number"] = 55,}
+Ba = {["name"] = "Barium",
+	["short"] = "Ba",
+	["MOT"] = "https://doi.org/10.1103/PhysRevA.79.041402",
+	["number"] = 56,}
+La = {["name"] = "Lanthanum",
+	["short"] = "La",
+	["number"] = 57,}
+Ce = {["name"] = "Cerium",
+	["short"] = "Ce",
+	["number"] = 58,}
+Pr = {["name"] = "Praseodymium",
+	["short"] = "Pr",
+	["number"] = 59,}
+Nd = {["name"] = "Neodymium",
+	["short"] = "Nd",
+	["number"] = 60,}
+Pm = {["name"] = "Promethium",
+	["short"] = "Pm",
+	["number"] = 61,}
+Sm = {["name"] = "Samarium",
+	["short"] = "Sm",
+	["number"] = 62,}
+Eu = {["name"] = "Europium",
+	["short"] = "Eu",
+	["BEC"] = "https://doi.org/10.1103/PhysRevLett.129.223401",
+	["number"] = 63,}
+Gd = {["name"] = "Gadolinium",
+	["short"] = "Gd",
+	["number"] = 64,}
+Tb = {["name"] = "Terbium",
+	["short"] = "Tb",
+	["number"] = 65,}
+Dy = {["name"] = "Dysprosium",
+	["short"] = "Dy",
+	["MOT"] = "https://doi.org/10.1103/PhysRevA.82.043425",
+	["BEC"] = "https://doi.org/10.1103/PhysRevLett.107.190401",
+	["number"] = 66,}
+Ho = {["name"] = "Holmium",
+	["short"] = "Ho",
+	["MOT"] = "https://doi.org/10.1103/PhysRevA.89.041401",
+	["number"] = 67,}	
+Er = {["name"] = "Erbium",
+	["short"] = "Er",
+	["MOT"] = "https://doi.org/10.1103/PhysRevLett.96.143005",
+	["BEC"] = "https://doi.org/10.1103/PhysRevLett.108.210401",
+	["number"] = 68,}
+Tm = {["name"] = "Tellurium",
+	["short"] = "Tm",
+	["MOT"] =  "https://doi.org/10.1103/PhysRevA.82.011405",
+	["BEC"] = "https://doi.org/10.1103/PhysRevA.102.011302",
+	["number"] = 69,}
+Yb = {["name"] = "Ytterbium",
+	["short"] = "Yb",
+	["BEC"] = "https://doi.org/10.1103/PhysRevLett.91.040404",
+	["BECisotope"] = "https://doi.org/10.1103/PhysRevLett.94.160401",
+	["MOT"] = "https://doi.org/10.1103/PhysRevA.60.R745",
+	["number"] = 70,}
+Lu = {["name"] = "Luthetium",
+	["short"] = "Lu",
+	["number"] = 71,}
+Hf = {["name"] = "Hafnium",
+	["short"] = "Hf",
+	["number"] = 72,}
+Ta = {["name"] = "Tantalum",
+	["short"] = "Ta",
+	["number"] = 73,}
+W = {["name"] = "Tungsten",
+	["short"] = "W",
+	["number"] = 74,}
+Re = {["name"] = "Rhenium",
+	["short"] = "Rh",
+	["number"] = 75,}
+Os = {["name"] = "Osmium",
+	["short"] = "Os",
+	["number"] = 76,}
+Ir = {["name"] = "Iridium",
+	["short"] = "Ir",
+	["number"] = 77,}
+Pt = {["name"] = "Platinum",
+	["short"] = "Pt",
+	["number"] = 78,}
+Au = {["name"] = "Gold",
+	["short"] = "Au",
+	["number"] = 79,}
+Hg = {["name"] = "Mercury",
+	["short"] = "Hg",
+	["MOT"] = "https://doi.org/10.1103/PhysRevLett.100.053001",
+	["number"] = 80,}
+Tl = {["name"] = "Thallium",
+	["short"] = "Tl",
+	["number"] = 81,}	
+Pb = {["name"] = "Lead",
+	["short"] = "Pb",
+	["number"] = 82,}	
+Bi = {["name"] = "Bismuth",
+	["short"] = "Bi",
+	["number"] = 83,}	
+Po = {["name"] = "Polonium",
+	["short"] = "Po",
+	["number"] = 84,}	
+At = {["name"] = "Astatine",
+	["short"] = "At",
+	["number"] = 85,}	
+Rn = {["name"] = "Radon",
+	["short"] = "Rn",
+	["number"] = 86,}
+Fr = {["name"] = "Francium",
+	["short"] = "Fr",
+	["MOT"] = "https://doi.org/10.1103/PhysRevLett.76.3522",
+	["number"] = 87,}	
+Ra = {["name"] = "Radium",
+	["short"] = "Ra",
+	["MOT"] = "https://doi.org/10.1103/PhysRevLett.98.093001",
+	["number"] = 88,}
+Ac = {["name"] = "Actinium",
+	["short"] = "Ac",
+	["number"] = 89,}		
+Th = {["name"] = "Thorium",
+	["short"] = "Th",
+	["number"] = 90,}	
+Pa = {["name"] = "Protactinium",
+	["short"] = "Pa",
+	["number"] = 91,}	
+U = {["name"] = "Uranium",
+	["short"] = "U",
+	["number"] = 92,}	
+Np = {["name"] = "Neptunium",
+	["short"] = "Np",
+	["number"] = 93,}	
+Pu = {["name"] = "Plutonium",
+	["short"] = "Pu",
+	["number"] = 94,}	
+Am = {["name"] = "Americium",
+	["short"] = "Am",
+	["number"] =95 ,}	
+Cm = {["name"] = "Curium",
+	["short"] = "Cm",
+	["number"] = 96,}	
+Bk = {["name"] = "Berkelium",
+	["short"] = "Bk",
+	["number"] = 97,}	
+Cf = {["name"] = "Californium",
+	["short"] = "Cf",
+	["number"] = 98,}	
+Es = {["name"] = "Einsteinium",
+	["short"] = "Es",
+	["number"] = 99,}	
+Fm = {["name"] = "Fermium",
+	["short"] = "Fm",
+	["number"] = 100,}	
+Md = {["name"] = "Mendelevium",
+	["short"] = "Md",
+	["number"] = 101,}	
+No = {["name"] = "Nobelium",
+	["short"] = "No",
+	["number"] = 102,}	
+Lr = {["name"] = "Lawrencium",
+	["short"] = "Lr",
+	["number"] = 103,}	
+Rf = {["name"] = "Rutherfordium",
+	["short"] = "Rf",
+	["number"] = 104,}
+Db = {["name"] = "Dubnium",
+	["short"] = "Db",
+	["number"] = 105,}
+Sg = {["name"] = "Seaborgium",
+	["short"] = "Sg",
+	["number"] = 106,}
+Bh = {["name"] = "Bohrium",
+	["short"] = "Bh",
+	["number"] = 107,}
+Hs = {["name"] = "Hassium",
+	["short"] = "Hs",
+	["number"] = 108,}
+Mt = {["name"] = "Meitnerium",
+	["short"] = "Mt",
+	["number"] = 109,}
+Ds = {["name"] = "Darmstadtium",
+	["short"] = "Ds",
+	["number"] = 110,}
+Rg = {["name"] = "Roentgenium",
+	["short"] = "Rg",
+	["number"] = 111,}
+Cn = {["name"] = "Copernicium",
+	["short"] = "Cn",
+	["number"] = 112,}
+Nh = {["name"] = "Nihonium",
+	["short"] = "Nh",
+	["number"] = 113,}
+Fl = {["name"] = "Flerovium",
+	["short"] = "Fl",
+	["number"] = 114,}
+Mc = {["name"] = "Moscovium",
+	["short"] = "Mc",
+	["number"] = 115,}
+Lv = {["name"] = "Livermorium",
+	["short"] = "Lv",
+	["number"] = 116,}
+Ts = {["name"] = "Tenness",
+	["short"] = "Ts",
+	["number"] = 117,}
+Og = {["name"] = "Oganesson",
+	["short"] = "Og",
+	["number"] = 118,}
+
+atoms = {
+H, He,
+Li, Be, B, O, C, N, F, Ne,
+Na, Mg, Al, Si, P, S, Cl, Ar, 
+K, Ca, Sc, Ti, V, Cr, Mn, Fe, Co, Ni, Cu, Zn, Ga, Ge, As, Se, Br, Kr,
+Rb, Sr, Y, Zr, Nb, Mo, Tc, Ru, Rh, Pd, Ag, Cd, In,Sn,Sb,Te,I,Xe,
+Cs,Ba,Hf,Ta,W,Re,Os,Ir,Pt,Au,Hg,Tl,Pb,Bi,Po,At,Rn,
+  La,Ce,Pr,Nd,Pm,Sm,Eu,Gd,Tb,Dy,Ho,Er,Tm,Yb,Lu,
+Fr,Ra,Rf,Db,Sg,Bh,Hs,Mt,Ds,Rg,Cn,Nh,Fl,Mc,Lv,Ts,Og,
+  Ac,Th,Pa,U,Np,Pu,Am,Cm,Bk,Cf,Es,Fm,Md,No,Lr,
+}
+
+\end{luacode}
+
+\begin{document}
+\noindent
+
+\luadirect{
+local function makenode(a, xpos, ypos, fillcolor,filltext)
+    tp("\\node at ("..xpos*xscale..","..-ypos*yscale..")[fill = "..fillcolor.."!20,minimum width=1.3cm,minimum height = .9cm]{\\textsubscript{ "..a['number'].."}".. filltext.."};")  
+end
+
+xscale = 1.5
+yscale = 1
+tp = tex.print
+
+local tio = texio.write_nl
+
+function makePTE(find,findcolor)    
+	tp("\\node at (9,-1)[fill = red,minimum width=1.3cm,minimum height = .9cm]{"..find.."};")  
+	for _,a in ipairs(atoms) do
+	  if a["number"] then
+	    x = a["number"]
+	    tio(x .. a["short"])
+	    
+	    if (x < 119) then xpos = x-86-14 ypos = 7 end	    
+	    if (x < 104) then xpos = x-86 ypos = 9.2 end	    
+	    if (x < 89) then xpos = x-86 ypos = 7 end
+	    if (x < 87) then xpos = x-68 ypos = 6 end
+	    if (x < 72) then xpos = x-54 ypos = 8.2 end
+	    if (x < 57) then xpos = x-54 ypos = 6 end
+	    if (x < 55) then xpos = x-36 ypos = 5 end
+	    if (x < 37) then xpos = x-18 ypos = 4 end
+	    if (x < 19) then xpos = x-10+10 ypos = 3 end
+	    if (x < 13) then xpos = x-10 ypos = 3 end
+	    if (x < 11) then xpos = x-2+10 ypos = 2 end
+	    if (x < 5) then xpos = x-2 ypos = 2 end
+	    if (x < 3) then xpos = 17*(x-1)+1 ypos = 1 end
+	
+	    fillcolor = "blue"
+	    filltext = a["short"]
+	    if a[find] then
+	      fillcolor = findcolor
+	      filltext = "\\href{"..a[find].."}{"..a["short"].."}"
+	    end
+	    makenode(a, xpos,ypos,fillcolor,filltext)
+	  end
+	end
+end
+}
+
+\begin{tikzpicture}[font=\sffamily]
+\directlua{makePTE("BEC","red")}
+\end{tikzpicture}
+
+.
+
+\begin{tikzpicture}[font=\sffamily]
+\directlua{makePTE("MOT","orange")}
+\end{tikzpicture}
+
+\end{document}
